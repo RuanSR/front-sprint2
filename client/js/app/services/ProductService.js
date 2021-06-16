@@ -3,11 +3,14 @@ class ProductService {
     this._http = new HttpService();
   }
 
-  allProducts() {
+  allProducts(search = '') {
     return this._http
       .get('/produtos')
       .then(products =>{
-        return products.map(obj => new Product(obj.imagem, obj.descricao, obj.valor))
+        let allProducts = products.map(obj => new Product(obj.imagem, obj.descricao, obj.valor));
+        return allProducts
+        .filter(product => product._description.toLowerCase()
+        .includes(search));
       })
       .catch(error => {
         console.log(error);

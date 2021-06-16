@@ -7,9 +7,12 @@ class ProductsList {
   get productList(){
     return [].concat(this._productList);
   }
-
+  
   addProduct(product){
     this._productList.push(product);
   }
 
+  clearProductList(){
+    this._productList = [];
+  }
 }

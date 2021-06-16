@@ -2,10 +2,12 @@ class ProductsController {
   constructor() {
     let $ = document.querySelector.bind(document);
 
+    this._products__row = $('.products__row');
+
     this._productList = new Bind(
       new ProductsList(),
       new ProductsView($('.products__row')),
-      'addProduct');
+      'addProduct', 'addSearchList');
 
     this._message = new Bind(
       new Message(),
@@ -16,10 +18,11 @@ class ProductsController {
     this.allProducts();
   }
 
-  allProducts() {
+  allProducts(search = '') {
+
     let service = new ProductService();
     service
-      .allProducts()
+      .allProducts(search)
       .then(products => products.forEach(p => {
         this._productList.addProduct(p);
       }))
@@ -28,4 +31,11 @@ class ProductsController {
         this._message.message = error;
       })
   }
+
+  searchData(event){
+    let search = event.value.toLowerCase();
+    this._productList.clearProductList();
+    this.allProducts(search);
+  }
+
 }
