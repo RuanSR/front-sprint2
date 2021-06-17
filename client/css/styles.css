@@ -226,12 +226,13 @@ html input {
   margin: 8px;
 }
 .main__products .products__list {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4,auto)
 }
 @media (max-width: 1200px) {
   .main__products .products__list {
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2,auto)
   }
 }
 @media (max-width: 1200px) {

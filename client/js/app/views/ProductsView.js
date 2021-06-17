@@ -6,8 +6,8 @@ class ProductsView extends View {
   template(data) {
     return `
     <ol class="products__list">
-      <li class="products__card">
-        ${data._productList.map(p => `
+    ${data._productList.map(p => `
+        <li class="products__card">
           <div class="card">
             <img
               class="card__img"
@@ -19,8 +19,8 @@ class ProductsView extends View {
             </p>
             <p class="card__price">R$ ${p._value}</p>
           </div>
+        </li>
         `).join('')}
-      </li>
     </ol>
     `;
   }
